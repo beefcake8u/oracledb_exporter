@@ -4,6 +4,11 @@ metricsdesc = { p95_rows= "Table metric that shows active session details" }
 request = "SELECT  INST_ID, SID, SERIAL#, USERNAME, STATUS, SCHEMANAME, MACHINE, PROGRAM, TO_CHAR(LOGON_TIME,'DD-MON-YY HH24:MI:SS') LOGON_TIME FROM    GV$SESSION WHERE   SCHEMANAME != 'SYS' AND     STATUS = 'ACTIVE' FETCH FIRST 10 ROWS ONLY"
 
 [[metric]]
+context = "oracledb_session_test"
+metricsdesc = { p95_rows= "Table metric that shows active session details" }
+request = "SELECT  INST_ID, SID, SERIAL#, USERNAME, STATUS, SCHEMANAME, MACHINE, PROGRAM, TO_CHAR(LOGON_TIME,'DD-MON-YY HH24:MI:SS') LOGON_TIME FROM    GV$SESSION WHERE   SCHEMANAME != 'SYS' AND     STATUS = 'ACTIVE' FETCH FIRST 10 ROWS ONLY"
+
+[[metric]]
 context = "slow_queries"
 metricsdesc = { p95_time_usecs= "Gauge metric with percentile 95 of elapsed time.", p99_time_usecs= "Gauge metric with percentile 99 of elapsed time." }
 request = "select  percentile_disc(0.95)  within group (order by elapsed_time) as p95_time_usecs, percentile_disc(0.99)  within group (order by elapsed_time) as p99_time_usecs from v$sql where last_active_time >= sysdate - 5/(24*60)"
