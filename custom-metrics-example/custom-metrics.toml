@@ -1,7 +1,22 @@
 [[metric]]
 context = "oracledb_session_details"
-metricsdesc = { p95_rows= "Table metric that shows active session details" }
-request = "SELECT  INST_ID, SID, SERIAL#, USERNAME, STATUS, SCHEMANAME, MACHINE, PROGRAM, TO_CHAR(LOGON_TIME,'DD-MON-YY HH24:MI:SS') LOGON_TIME FROM    GV$SESSION WHERE   SCHEMANAME != 'SYS' AND     STATUS = 'ACTIVE' FETCH FIRST 10 ROWS ONLY"
+metricsdesc = { " " }
+request = '''
+SELECT  INST_ID,
+        SID,
+        SERIAL#,
+        USERNAME,
+        STATUS,
+        SCHEMANAME,
+        MACHINE,
+        PROGRAM,
+        TO_CHAR(LOGON_TIME,'DD-MON-YY HH24:MI:SS') LOGON_TIME
+FROM    GV$SESSION
+WHERE   SCHEMANAME != 'SYS'
+AND     STATUS = 'ACTIVE'
+FETCH FIRST 10 ROWS ONLY
+'''
+
 
 [[metric]]
 context = "oracledb_session_test"
